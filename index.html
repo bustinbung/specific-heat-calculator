@@ -30,7 +30,8 @@
     </div>
     
     <script>
-       //get values
+      function update() {
+        //get values
         var smass = document.querySelector('.smass').value;
         var tinitial = document.querySelector('.tinitial').value;
         var tfinal = document.querySelector('.tfinal').value;
@@ -40,7 +41,6 @@
         var hloss = document.querySelector('.hloss');
         var specheat = document.querySelector('.specheat');
         
-      function update() {
         //math :(
         var qh20 = 150 * 4.2 * (tfinal - tinitial);
         var qsm = -qh20;
