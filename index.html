@@ -16,6 +16,7 @@
       <input type='number' class='tinitial'><br>
       <label for='tfinal'>Final temp (&deg;C): </label>
       <input type='number' class='tfinal'><br>
+      <button class='submit'>Calculate</submit>
     </form>
     
     <h3>Results</h3>
@@ -29,32 +30,33 @@
     </form>
     
     <script>
-      function update() {
-        //get values
-        var smass = document.querySelector('smass').value;
-        var tinitial = document.querySelector('tinital').value;
-        var tfinal = document.querySelector('tfinal').value;
+       //get values
+        var smass = document.querySelector('.smass').value;
+        var tinitial = document.querySelector('.tinitial').value;
+        var tfinal = document.querySelector('.tfinal').value;
         
         //get locations
-        var hgain = document.querySelector('hgain').value;
-        var hloss = document.querySelector('hloss').value;
-        var specheat = document.querySelector('specheat').value;
+        var hgain = document.querySelector('.hgain');
+        var hloss = document.querySelector('.hloss');
+        var specheat = document.querySelector('.specheat');
         
+      function update() {
         //math :(
-        var qh20 = 150 * 4.2 * tfinal - tinitial;\
+        var qh20 = 150 * 4.2 * (tfinal - tinitial);
         var qsm = -qh20;
         
-        var smheat = qsm / (smass * (100 - tfinal))
+        var smheat = qh20 / (smass * (100 - tfinal))
         
         //spit it out
-        hgain.value = qh20;
-        hloss.value = qsm;
-        specheat.value = smheat;
+        hgain.value = Math.round((qh20 + 0.00001) * 1000) / 1000;
+        hloss.value = Math.round((qsm + 0.00001) * 1000) / 1000;
+        specheat.value = Math.round((smheat + 0.00001) * 1000) / 1000;
       }
       
-      smass.oninput = function() {update();}
-      tinitial.oninput = function() {update();}
-      tfinal.oninput = function() {update();}
+      //change on button
+      document.querySelector('.smass').oninput = function() {update();}
+      document.querySelector('.tinitial').oninput = function() {update();}
+      document.querySelector('.tfinal').oninput = function() {update();}
     </script>
       
     <a class='github-button' href='https://github.com/bustinbung/specific-heat-calculator' data-icon='octicon-eye' aria-label='View bustinbung/specific-heat-calculator on GitHub'>View</a>
