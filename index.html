@@ -6,12 +6,57 @@
     <script async defer src='https://buttons.github.io/buttons.js'></script>
   </head>
   <body>
-    <a class='github-button' href='https://github.com/bustinbung/specific-heat-calculator' data-icon='octicon-eye' aria-label='View bustinbung/specific-heat-calculator on GitHub'>View</a>
+    <h1>Specific Heat Calculator</h1>
+    <p>Assumes mass of water is 150g and intial temp of sample is 100&deg;C.</p><br>
+    <h3>Input</h3>
     <form>
-      <label for='sm-mass'>Sample mass: </label>
-      <input type='number' class='sm-mass'>
+      <label for='smass'>Sample mass (g): </label>
+      <input type='number' class='smass'><br>
+      <label for='tinitial'>Initial temp of water (&deg;C): </label>
+      <input type='number' class='tinitial'><br>
       <label for='tfinal'>Final temp (&deg;C): </label>
-      <input type='number' class='tfinal'>
+      <input type='number' class='tfinal'><br>
     </form>
+    
+    <h3>Results</h3>
+    <form>
+      <label for='hgain'>Heat gained by H<sub>2</sub>O (J): </label>
+      <input class='noclick hgain'><br>
+      <label for='hloss'>Heat lost by sample (J): </label>
+      <input class='noclick hloss'><br>
+      <label for='specheat'>Specific heat: </label>
+      <input class='noclick specheat'><br>
+    </form>
+    
+    <script>
+      function update() {
+        //get values
+        var smass = document.querySelector('smass').value;
+        var tinitial = document.querySelector('tinital').value;
+        var tfinal = document.querySelector('tfinal').value;
+        
+        //get locations
+        var hgain = document.querySelector('hgain').value;
+        var hloss = document.querySelector('hloss').value;
+        var specheat = document.querySelector('specheat').value;
+        
+        //math :(
+        var qh20 = 150 * 4.2 * tfinal - tinitial;\
+        var qsm = -qh20;
+        
+        var smheat = qsm / (smass * (100 - tfinal))
+        
+        //spit it out
+        hgain.value = qh20;
+        hloss.value = qsm;
+        specheat.value = smheat;
+      }
+      
+      smass.oninput = function() {update();}
+      tinitial.oninput = function() {update();}
+      tfinal.oninput = function() {update();}
+    </script>
+      
+    <a class='github-button' href='https://github.com/bustinbung/specific-heat-calculator' data-icon='octicon-eye' aria-label='View bustinbung/specific-heat-calculator on GitHub'>View</a>
   </body>
 </html>
