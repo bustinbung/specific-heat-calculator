@@ -9,7 +9,7 @@
     <h1>Specific Heat Calculator</h1>
     <p>Assumes mass of water is 150g and intial temp of sample is 100&deg;C.</p><br>
     <h3>Input</h3>
-    <form>
+    <div>
       <label for='smass'>Sample mass (g): </label>
       <input type='number' step='any' class='smass'><br>
       <label for='tinitial'>Initial temp of water (&deg;C): </label>
@@ -17,17 +17,17 @@
       <label for='tfinal'>Final temp (&deg;C): </label>
       <input type='number' class='tfinal'><br>
       <button class='calc'>Calculate</button>
-    </form>
+    </div>
     
     <h3>Results</h3>
-    <form>
+    <div>
       <label for='hgain'>Heat gained by H<sub>2</sub>O (J): </label>
       <input class='noclick hgain'><br>
       <label for='hloss'>Heat lost by sample (J): </label>
       <input class='noclick hloss'><br>
       <label for='specheat'>Specific heat: </label>
       <input class='noclick specheat'><br>
-    </form>
+    </div>
     
     <script>
        //get values
